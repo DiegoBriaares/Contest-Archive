@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define MAX 2101
+#define MAX 2102
 string str1,str2;
 int memo[MAX][MAX];
 int dp(int n,int m){
