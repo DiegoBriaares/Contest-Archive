@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define p pair <int,int>
-int n,memo[7][10002];
+int n,memo[7][10003];
 vector<p> v[7];
 int dp(int i,int m){
 	if(m<0)return 0;
