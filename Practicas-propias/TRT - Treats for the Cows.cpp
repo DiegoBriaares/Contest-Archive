@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define MAX 2002
+#define MAX 2003
 int v[MAX],memo[MAX][MAX],n;
 int dp(int i,int m,int age){
 	if(i>m)return 0;
