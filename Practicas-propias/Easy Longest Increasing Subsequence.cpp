@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define MAX 22
+#define MAX 23
 int v[MAX],n,memo[MAX][500];
 int dp(int i,int x){
 	if(i==n)return 0;
