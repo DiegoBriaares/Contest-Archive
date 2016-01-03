@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define MAX 1002
+#define MAX 1003
 int v[MAX],k,n,may;
 bool memo[MAX][MAX];
 void dp(int i,int m){
