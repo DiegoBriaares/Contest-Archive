@@ -9,10 +9,8 @@ int dp(int m,int i){
 	return memo[m][i]=min(1+dp(m-v[i],i),dp(m,i+1));
 }
 	int main (){
-		ios_base::sync_with_stdio(0);
-		cin.tie(0);
 		int c;
 		cin>>c>>n;
 		for(int i=0;i<n;i++)cin>>v[i];
-		cout << dp(c,0);
+		cout << dp(c,0)<<"\n";
 	}
