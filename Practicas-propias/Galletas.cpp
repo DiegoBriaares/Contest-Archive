@@ -1,11 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
-int memo[150][500][100][50];
+int memo[188][151][51];
 int dp(int n,int a,int b,int c){
-	if(a<0||b<0||c<0)return (1<<20);
 	if(n==0)return 0;
-	if(memo[n][a][b][c])return memo[n][a][b][c];
-	return memo[n][a][b][c]=min(min(1+dp(n-1,a+2,b,c-1),4+dp(n-1,a-3,b-1,c)),min(8+dp(n-1,a-8,b,c),2+dp(n-1,a+2,b-2,c)));
+	if(!memo[n][b][c]){
+		int mini=(1<<20);
+		if(a-8>=0)mini=min(mini,dp(n-1,a-8,b,c)+8);
+		if(a-3>=0&&b-1>=0)mini=min(mini,dp(n-1,a-3,b-1,c)+4);
+		if(b-2>=0)mini=min(mini,dp(n-1,a+2,b-2,c)+2);
+		if(a-3>=0&&c-1>=0)mini=min(mini,dp(n-1,a-3,b+1,c-1)+4);
+		if(c-1>=0)mini=min(mini,dp(n-1,a+2,b,c-1)+1);
+		memo[n][b][c]=mini;
+	}
+	return memo[n][b][c];
 }
 	int main (){
 		ios_base::sync_with_stdio(0);
