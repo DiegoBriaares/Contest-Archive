@@ -7,7 +7,7 @@ li dp(uli x,int p){
 	const pair<uli,int> uso=make_pair(x,p);
 	if(x==0)return 1;
 	if(p<63&&((1ULL<<(p+2))-2)<x)return 0;
-	//if(x+(1ULL<<p)<0)return 0;
+	if(x+(1ULL<<p)<0)return 0;
 	if(memo[uso])return memo[uso];
 	memo[uso]+=(dp(x,p-1));
 	if(x>=(1ULL<<p))memo[uso]+=(dp(x-(1ULL<<p),p-1));
