@@ -16,6 +16,10 @@ int query(int i){
 	}
 	return suma;
 }
+void update(int i, int x){
+    for(;i<=MAX;i+=i&-i)
+        BIT[i]+=x;
+}
 	int main (){
 		ios_base::sync_with_stdio(0);
 		cin.tie(0);
