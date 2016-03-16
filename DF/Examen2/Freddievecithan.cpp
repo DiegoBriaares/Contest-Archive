@@ -54,5 +54,4 @@ void solve(){
 			return 0;
 		}
 		solve();
-		return 0;
 	}
