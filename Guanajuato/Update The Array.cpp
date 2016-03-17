@@ -7,6 +7,7 @@ int v[MAX];
 		cin.tie(0);
 		int t;
 		cin>>t;
+		
 		for(int rep=0;rep<t;rep++){
 			memset(v,0,sizeof(v));
 			int i,j,k,n,u,g,h,y;
