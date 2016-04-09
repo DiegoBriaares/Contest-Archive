@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define MAX 5002
+#define MAX 5003
 #define ll long long
 ll v[MAX],n,chico=(1<<30),res=(1<<30);
 map<pair<ll,int>,ll>memo;
