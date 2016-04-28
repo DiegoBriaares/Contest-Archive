@@ -56,7 +56,7 @@ ll hashing(string v){
 		bool ok;
 		for(i=0;i<uso.size();){
 			ok=false;
-			for(int j=n-1;j>=0;j--){
+			for(int j=0;j<n;j++){
 				if(op[j].first==hashes[i+(op[j].second-1)]-(i==0?0:hashes[i-1]*(pots[(op[j].second)])%MOD)){
 					i+=(op[j].second);
 					ok=true;
