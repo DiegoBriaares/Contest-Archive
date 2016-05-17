@@ -3,7 +3,7 @@ using namespace std;
 #define MAX 2500002
 struct node {
 	bool done;
-	char hijos[26];
+	int hijos[26];
 };
 node trie[MAX];
 string v;
