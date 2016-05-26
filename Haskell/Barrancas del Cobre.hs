@@ -11,11 +11,11 @@ brrop i k xs= (xs !! (i-1))-(xs !! (i-2))
 brrop2 :: Int->Int->[Int]->Int
 brrop2 i k xs= (xs !! (i+k-2))-(xs !! (i+k-3))
 
-brrsolve :: Int->Int->Int->Int->[Int]->Int
-brrsolve 0 mini i k arr = mini
-brrsolve n mini i k arr = brrsolve (n-1) uso (i+1) k arr
-	where uso = max mini (mini-(brrop i k arr)+brrop2 i k arr)
+brrsolve :: Int->Int->Int->Int->[Int]->Int->Int
+brrsolve 0 maxi i k arr sum = maxi
+brrsolve n maxi i k arr sum = brrsolve (n-1) (max maxi (sumatoria)) (i+1) k arr sumatoria
+	where sumatoria = ((sum-(brrop i k arr))+brrop2 i k arr)
 
 barrancas :: Int->[Int]->Int
-barrancas n xs = brrsolve ((length xs)-n) s 2 n xs
+barrancas n xs = brrsolve ((length xs)-n) s 2 n xs s
 	where s = brrsum1 (n-1) xs 0
