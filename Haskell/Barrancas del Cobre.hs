@@ -1,6 +1,5 @@
 import Data.List
 import Data.Char
-
 brrsum1 :: Int->[Int]->Int->Int
 brrsum1 0 xs s = s
 brrsum1 n xs s = brrsum1 (n-1) xs (s+((xs !! n)-(xs !! (n-1))))
