@@ -206,3 +206,52 @@ vigenere1 a b = vigcript a (take (viglenght a) (cycle b))
 
 vigenere2 :: [Char]->[Char]->[Char]
 vigenere2 a b = vigcript2 a (take (viglenght a) (cycle b))
+
+brrsum1 :: Int->[Int]->Int->Int
+brrsum1 0 xs s = s
+brrsum1 n xs s = brrsum1 (n-1) xs (s+((xs !! n)-(xs !! (n-1))))
+
+brrop :: Int->Int->[Int]->Int
+brrop i k xs= (xs !! (i-1))-(xs !! (i-2))
+
+brrop2 :: Int->Int->[Int]->Int
+brrop2 i k xs= (xs !! (i+k-2))-(xs !! (i+k-3))
+
+brrsolve :: Int->Int->Int->Int->[Int]->Int->Int
+brrsolve 0 maxi i k arr sum = maxi
+brrsolve n maxi i k arr sum = brrsolve (n-1) (max maxi (sumatoria)) (i+1) k arr sumatoria
+	where sumatoria = ((sum-(brrop i k arr))+brrop2 i k arr)
+
+barrancas :: Int->[Int]->Int
+barrancas n xs = brrsolve ((length xs)-n) s 2 n xs s
+	where s = brrsum1 (n-1) xs 0
+
+cpc :: [Char]->Char->Int
+cpc [] uso = 0
+cpc (x:xs) uso
+	|x==uso = 1+cpc xs uso
+	|otherwise = cpc xs uso
+
+cpint :: [Char]->[Int]
+cpint arr = [(cpc arr x) |x<-['a'..'z'],(cpc arr x)/=0 ]
+
+cpchar :: [Char]->[Char]
+cpchar xs = [x |x<-['a'..'z'],(cpc xs x)/=0]
+
+cpsolve :: [Char]->[(Int,Char)]
+cpsolve xs = zip (cpint xs) (cpchar xs)
+
+cptostring :: [(Int,Char)]->String
+cptostring [] = ""
+cptostring (x:xs) = show (fst x)++ show(snd x)++ cptostring xs
+
+cadenaperfecta :: [Char]->String
+cadenaperfecta xs = cptostring (cpsolve xs)
+
+chcsolve :: [Int]->Int->Int->Int->Int
+chcsolve xs i j x
+	| i>j = 0
+	| otherwise = max ((xs !! i)*x+(chcsolve xs (i+1) j (x+1))) ((xs !! j)*x+(chcsolve xs i (j-1) (x+1)))
+
+chocolates :: [Int]->Int
+chocolates xs = chcsolve xs 0 (length xs-1) 1
