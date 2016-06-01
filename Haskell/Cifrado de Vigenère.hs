@@ -1,3 +1,6 @@
+import Data.List
+import Data.Char
+
 viglenght :: [Char]->Int
 viglenght [] = 0
 viglenght (_:xs) = 1+ viglenght xs
@@ -17,3 +20,14 @@ vigenere1 a b = vigcript a (take (viglenght a) (cycle b))
 
 vigenere2 :: [Char]->[Char]->[Char]
 vigenere2 a b = vigcript2 a (take (viglenght a) (cycle b))
+
+vigenere :: Int->[Char]->[Char]->[Char]
+vigenere n a b
+	| n== 1 = vigenere1 a b
+	|otherwise = vigenere2 a b
+
+main = do
+	n<-readLn
+	a<-getLine
+	b<-getLine
+	putStrLn (vigenere n a b)
