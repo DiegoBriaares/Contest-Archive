@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define MAX 100002
+#define MAX 100001
 int n,k;
 int v[MAX];
 bool cmp(int x){
