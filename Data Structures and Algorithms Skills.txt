@@ -21,7 +21,7 @@ Backtracking
 Suffix Array
 Topologicalsort
 Binary Search Tree
-Bit manipulation
+Bits manipulation
 Big numbers
 Recursion
 Brute forces
