@@ -1,0 +1,33 @@
+Dynamic Programming
+Greedy
+DFS
+BFS
+Dijkstra
+Bynary search
+Ternary search
+Sorting
+Strings
+Segment Tree
+Bitmasks
+Hashing table
+Rolling hash (rabin karp)
+Divide and conquer
+Stacks
+Queues
+Priority queues
+Binary Indexed Tree
+Trie
+Backtracking
+Suffix Array
+Topologicalsort
+Binary Search Tree
+Bit manipulations
+Big numbers
+Recursion
+Brute forces
+Pairs manipulation (std::)
+Set (std::)
+Map (std::)
+Ad-hoc
+
+And many others....
