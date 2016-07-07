@@ -8,6 +8,7 @@ Ternary search
 Sorting
 Strings
 Segment Tree
+Lazy Propagation 
 Bitmasks
 Hashing table
 Rolling hash (rabin karp)
