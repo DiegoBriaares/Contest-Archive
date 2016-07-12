@@ -7,6 +7,7 @@ Bynary search
 Ternary search
 Sorting
 Strings
+Heaps
 Segment Tree
 Lazy Propagation 
 Bitmasks
