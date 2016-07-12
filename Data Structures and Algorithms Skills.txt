@@ -2,7 +2,6 @@ Dynamic Programming
 Greedy
 DFS
 BFS
-Edit Distance
 Dijkstra
 Bynary search
 Ternary search
@@ -12,6 +11,7 @@ Heaps
 Segment Tree
 Lazy Propagation 
 Bitmasks
+Edit Distance
 Hashing table
 Rolling hash (rabin karp)
 Divide and conquer
