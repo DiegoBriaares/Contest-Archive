@@ -2,6 +2,7 @@ Dynamic Programming
 Greedy
 DFS
 BFS
+Edit Distance
 Dijkstra
 Bynary search
 Ternary search
