@@ -28,6 +28,7 @@ Bits manipulation
 Big numbers
 Recursion
 Brute forces
+All kind of DP
 Pairs manipulation (std::)
 Set (std::)
 Map (std::)
