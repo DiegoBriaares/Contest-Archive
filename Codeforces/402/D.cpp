@@ -15,11 +15,11 @@ int v[MAX];
 			cin>>v[i];
 			v[i]--;
 		}
-		int in=0,fin=n-1;
-		while(in<=fin){
-			int mid=(in+fin)/2;
+		int in=0,fin=n;
+		while(in<fin){
+			int mid=in+(fin-in+1)/2;
 			aux=a;
-			for(int i=0;i<=mid;i++){
+			for(int i=0;i<mid;i++){
 				aux[v[i]]='.';
 			}
 			idx=0;
@@ -28,9 +28,9 @@ int v[MAX];
 			}
 			if(idx==b.size()){
 				r=max(r,mid);
-				in=mid+1;
+				in=mid;
 			}
 			else fin=mid-1;
 		}
-		cout << r+1<<"\n";
+		cout << r<<"\n";
 	}
