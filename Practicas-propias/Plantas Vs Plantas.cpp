@@ -1,11 +1,11 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 #define MAX 1000002
 int n,p=0;
-int pila[MAX];
+int r,res;
 int v[MAX];
+int pila[MAX];
 int many[MAX];
-int r=0,res;
 	int main (){
 		ios_base::sync_with_stdio(0);
 		cin.tie(0);
@@ -18,6 +18,10 @@ int r=0,res;
 			while(v[i]>pila[p]&&p>0){
 				if(many[p]>r)r=many[p];
 				else r++;
+				/*cout << "ELEM: "<<v[i]<<"\n";
+				cout << "PILA:\n";
+				for(int b=p;b;b--)cout << pila[b]<<" ";
+				cout << "\n";*/
 				p--;
 			}
 			pila[++p]=v[i];
