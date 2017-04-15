@@ -3,17 +3,15 @@ using namespace std;
 #define MAX 100002
 int n,q;
 int p,k;
+int r[MAX];
 int v[MAX];
+pair<int,pair<int,int> > querys[MAX];
 map<pair<int,int>,int>memo;
 int dp(int i){
 	if(i>n)return 0;
 	pair<int,int>aux=make_pair(i,k);
 	if(memo[aux])return memo[aux];
 	return memo[aux]=1+dp(i+k+v[i]);
-}
-int solve(int i){
-	if(i>n)return 0;
-	return 1+solve(i+k+v[i]);
 }
 	int main (){
 		ios_base::sync_with_stdio(0);
@@ -23,13 +21,16 @@ int solve(int i){
 			cin>>v[i];
 		}
 		cin>>q;
-		while(q--){
-			cin>>p>>k;
-			if(k<333){
-				cout << dp(p)<<"\n";	
-			}
-			else {
-				cout << solve(p)<<"\n";
-			}
+		for(int i=0;i<q;i++){
+			cin>>querys[i].second.first>>querys[i].first;
+			querys[i].second.second=i;
+		}
+		sort(querys,querys+q);
+		for(int i=0;i<q;i++){
+			p=querys[i].second.first,k=querys[i].first;
+			r[querys[i].second.second]=dp(p);
+		}
+		for(int i=0;i<q;i++){
+			cout << r[i]<<"\n";
 		}
 	}
