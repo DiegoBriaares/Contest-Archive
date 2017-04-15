@@ -6,12 +6,12 @@ int p,k;
 int r[MAX];
 int v[MAX];
 pair<int,pair<int,int> > querys[MAX];
-map<pair<int,int>,int>memo;
+int memo[MAX],vis[MAX];
 int dp(int i){
 	if(i>n)return 0;
-	pair<int,int>aux=make_pair(i,k);
-	if(memo[aux])return memo[aux];
-	return memo[aux]=1+dp(i+k+v[i]);
+	if(vis[i]==k)return memo[i];
+	vis[i]=k;
+	return memo[i]=1+dp(i+k+v[i]);
 }
 	int main (){
 		ios_base::sync_with_stdio(0);
