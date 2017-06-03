@@ -11,6 +11,7 @@ int m=1;
 int len,res;
 int arr[MAX];
 node trie[MAX*MAXN];
+map<pair<int,pair<int,int> >,int>memo;
 void add(string v){
 	int pos=1;
 	for(int i=0;i<=len;i++){
@@ -26,6 +27,8 @@ int maxi(int a,int b){
 int dp(int pot,int pos,int idx){
 	if(pot>len)return 0;
 	if(trie[pos].fin||trie[idx].fin)return -(1<<30);
+	pair<int,pair<int,int> >aux=make_pair(pot,make_pair(pos,idx));
+	if(memo[aux])return memo[aux];
 	int r=-(1<<30);
 	if(trie[pos].sons[1]&&trie[idx].sons[0]&&trie[pos].sons[0]&&trie[idx].sons[1])r=maxi(r,(1<<(len-pot))+maxi(r,maxi(dp(pot+1,trie[pos].sons[1],trie[idx].sons[0]),dp(pot+1,trie[pos].sons[0],trie[idx].sons[1]))));
 	else if(trie[pos].sons[1]&&trie[idx].sons[0])r=maxi(r,(1<<(len-pot))+dp(pot+1,trie[pos].sons[1],trie[idx].sons[0]));
@@ -38,7 +41,7 @@ int dp(int pot,int pos,int idx){
 			r=maxi(r,dp(pot+1,trie[pos].sons[1],trie[idx].sons[1]));
 		}
 	}
-	return r;
+	return memo[aux]=r;
 }
 	int main (){
 		ios_base::sync_with_stdio(0);
