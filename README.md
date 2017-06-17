@@ -1,2 +1,2 @@
 # Contest-Archive
-In the folder "Practicas Propias" are all my cool solutions :D
+For more information, contact me at my email. 
