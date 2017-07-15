@@ -28,9 +28,9 @@ int dp(int i,int j){
 				lol.push_back(i);
 				int s=m[i][1],i2=i;
 				for(int j=2;j<=c;j++){
-					if(uso3-s==memo[i2+1][j]&&i2+1<=n)s+=m[++i2][j];
-					else if(uso3-s==memo[i2-1][j]&&i2-1>=1)s+=m[--i2][j];
-					else s+=m[i2][j];
+					if(uso3-s==memo[i2-1][j]&&i2-1>=1)s+=m[--i2][j];
+					else if(uso3-s==memo[i2][j]&&i2<=n)s+=m[i2][j];
+					else s+=m[++i2][j];
 					lol.push_back(i2);
 				}
 				r=lol;
