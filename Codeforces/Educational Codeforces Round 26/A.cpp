@@ -11,7 +11,6 @@ string v;
 		getline(cin,n);
 		getline(cin,v);
 		for(int i=0;i<v.size();i++){
-		//	cout << "AUX: "<<v[i]<<" "<<r<<" "<<aux<<"\n";
 			if(v[i]==' '){
 				r=max(r,aux);
 				aux=0;
