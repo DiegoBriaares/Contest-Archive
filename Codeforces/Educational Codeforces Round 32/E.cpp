@@ -28,6 +28,7 @@ ll solve(ll k){
 			}
 			s%=mod;
 			res=max(res,s);
+			
 			arr.push_back(s);
 		}
 		for(int i=1;i<(1<<((n-n/2)));i++){
@@ -39,11 +40,13 @@ ll solve(ll k){
 			}
 			s%=mod;	
 			res=max(res,s);
+			
 			S.insert(s);
 		}
+		
 		for(int i=0;i<arr.size();i++){
 			int pos=solve(mod-arr[i]-1);
-			res=max(res,(arr[i]+pos)%mod);
+			if(S.find(pos)!=S.end())res=max(res,(arr[i]+pos)%mod);
 		}
 		cout << res<<"\n";
-	}
+	} 
