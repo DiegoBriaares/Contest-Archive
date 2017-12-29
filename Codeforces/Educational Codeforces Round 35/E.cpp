@@ -19,15 +19,11 @@ bool memo[MAX];
 			v.push_back(x);
 		}
 		v[0]=(1<<30);
-		ll p=1,idx=k;
+		ll p=1,idx=k,as=0;
 		int uso=0;
 		for(int i=1;i<=k;i++){
 			pila.push(v[i]);
 			b.push_back(v[i]);
-			if(v[i]>v[i-1]&&uso<(i-1)){
-				cout << "-1\n";
-				return 0;
-			}
 			memo[v[i]]=true;
 			if(v[i]==p){
 				while(!pila.empty()&&pila.top()==p){
@@ -36,6 +32,10 @@ bool memo[MAX];
 					memo[p]=true;
 					p++;
 				}
+			}
+			if(v[i]>v[i-1]&&v[i-1]>p){
+				cout << "-1\n";
+				return 0;
 			}
 		}
 		for(int i=k+1;i<=n;){
