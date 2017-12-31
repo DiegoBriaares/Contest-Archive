@@ -8,14 +8,12 @@ ll v[MAX];
 ll dp[MAX][MAX];
 ll suma[MAX],sum[MAX][MAX];
 void prec(){
-    for(int i=1; i<=n; i++){
-        suma[i]=suma[i-1]+v[i];
-    }
-    for(int i=1; i<=n; i++){
-        for(int j=i; j<=n; j++){
-            sum[i][j]=suma[j]-suma[i-1]; 
-        }    
-    }    
+    for(int i=1;i<=n;i++){
+    	sum[i][i]=v[i];
+    	for(int j=i+1;j<=n;j++){
+    		sum[i][j]=sum[i][j-1]+v[j];
+		}
+	}
 }
 int bin(int in,int fin,int a,ll s){
     int mid=(in+fin)/2;
