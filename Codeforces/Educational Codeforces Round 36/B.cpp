@@ -13,23 +13,9 @@ ll n,k,l,r,pos;
 			cout << "0\n";
 			return 0;
 		}
-		if(abs(l-pos)<abs(r-pos)){
-			res+=abs(l-pos);
-			if(l>1)res++;
-			if(r<n){
-				res+=abs(l-r);
-				res++;
-			}
-			
-		}
-		else {
-			res+=abs(r-pos);
-			if(r<n)res++;
-			if(l>1){
-				res+=abs(l-r);
-				res++;
-			}
-			
-		}
+		res=min(abs(pos-l),abs(pos-r))+(r-l);
+		if(l==1)res=abs(pos-r)+1;
+		else if(r==n)res=abs(pos-l)+1;
+		else res+=2;
 		cout << res<<"\n";
 	}
