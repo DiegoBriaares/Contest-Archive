@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define MAX 412
+#define MAX 402
 #define ll long double
 int n,k;
 map<pair<int,int>,ll>memo;
