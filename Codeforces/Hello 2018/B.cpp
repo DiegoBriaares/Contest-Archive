@@ -1,31 +1,38 @@
 #include <bits/stdc++.h>
+
 using namespace std;
-#define MAX 1102
-#define ll long long
-ll n,k;
-vector<ll>edg[MAX];
-	int main (){
-		ios_base::sync_with_stdio(0);
-		cin.tie(0);
-		cin>>n;
-		for(int i=1;i<n;i++){
-			int a;
-			cin>>a;
-			edg[a].push_back(i+1);
-			
-		}
-		for(int i=1;i<=n;i++){
-			if(edg[i].size()>0){
-				int ans=0;
-				for(int j=0;j<edg[i].size();j++){
-					if(edg[i][j]==i)continue;
-					if(edg[edg[i][j]].size()==0)ans++;
-				}
-				if(ans<3){
-					cout << "No\n";
-					return 0;
-				}
-			}
-		}
-		cout << "Yes\n";
-	}
+
+typedef long long ll;
+const ll MaxN = 310002;
+
+ll n;
+bool ok;
+bool memo[MaxN];
+vector<ll> edg[MaxN];
+
+void dfs (int nodo) {
+  if (memo[nodo]) return;
+  memo[nodo] = true;
+  int nl = 0;
+  for (int i = 0; i < edg[nodo].size(); i++) {
+    int son = edg[nodo][i];
+    if (edg[son].size() == 0) nl++;
+    dfs(son);
+  }
+  if (edg[nodo].size() > 0 && nl < 3) ok = false;
+}
+
+int main () {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  cin >> n;
+  for (int i = 2; i <= n; i++) {
+    ll dad;
+    cin >> dad;
+    edg[dad].push_back(i);
+  }
+  ok = true;
+  dfs(1);
+  if (ok) cout << "Yes\n";
+  else cout << "No\n";
+}
