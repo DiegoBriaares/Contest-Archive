@@ -8,25 +8,45 @@ using namespace std;
 
 typedef long long ll;
 
-const ll MaxN = 301002;
+const ll MaxN = 501002;
 
 ll n, q;
 int chN, p;
+ll dad[MaxN];
 bool vis[MaxN];
 ll sbt_sz[MaxN];
-vector<ll> ST[MaxN];
+vector<ll> bit[MaxN];
 vector<ll> tree[MaxN];
 vector<ll> chains[MaxN];
+vector<ll> founder[MaxN];
 ll heads[MaxN], chainId[MaxN], chainSz[MaxN], chainPos[MaxN], chainSt[MaxN];
+
+ll query(int chain, int i) {
+  if (i <= 0) return 0;
+  ll sum = 0;
+  while (i > 0) {
+    sum += bit[chain][i];
+    i -= (i & -i);
+  }
+  return sum;
+}
+
+void update(int chain, int i, int u) {
+  while (i <= chainSz[chain]) {
+    bit[chain][i] += u;
+    i += (i & -i);
+  }
+}
 
 void hld(int node) {
   if (vis[node]) return;
   vis[node] = true;
   if (heads[chN] == -1) heads[chN] = node;
   chainId[node] = chN;
-  chainPos[node] = chainSz[chN];
   chainSz[chN]++;
-  chains[chN].pb(node);
+  chainPos[node] = chainSz[chN];
+  chains[chN].pb(0);
+  founder[chN].pb(node);
   int max_subtree = 0, idx = -1;
   for (int i = 0; i < tree[node].size(); i++) {
     if (vis[tree[node][i]])continue;
@@ -53,23 +73,23 @@ void sizes(int node) {
   sbt_sz[node] = 1;
   for (int i = 0; i < tree[node].size(); i++) {
     if (vis[tree[node][i]]) continue;
+    dad[tree[node][i]] = node;
     sizes(tree[node][i]);
     sbt_sz[node] += sbt_sz[tree[node][i]];
   }
 }
 
-void update(int in, int fin, int node, int chain, int pos) {
-  if (in > pos || fin < pos) return;
-  if (in == pos && pos == fin) {
-    ST[chain][node] = !ST[chain][node];
-    return;
+ll get_idx(int chain, int pos) {
+  ll in = 1, fin = pos, la;
+  while (in <= fin) {
+    ll mid = (in + fin) / 2;
+    if (query(chain, mid) > 0) {
+      la = mid;
+      fin = mid - 1;
+    }
+    else in = mid + 1;
   }
-  int mid = (in + fin) / 2LL;
-  int left = (node * 2) + 1;
-  int right = (node * 2) + 2;
-  update(in, mid, left, chain, pos);
-  update(mid + 1, fin, right, chain, pos);
-  ST[chain][node] = ST[chain][left] + ST[chain][right];
+  return founder[chain][la - 1];
 }
 
 int main () {
@@ -88,16 +108,33 @@ int main () {
   memset(heads, -1, sizeof(heads));
   hld(1);
   for (int i = 0; i <= chN; i++) {
-    ST[i].reserve(chainSz[i] + 1);
+    bit[i].reserve(chainSz[i] + 2);
+    for (int j = 0; j <= chainSz[i] + 1; j++) bit[i][j] = 0;
   }
+  dad[1] = 1;
   while (q--) {
     int op, node;
     cin >> op >> node;
     if (!op) {
-      update(0, chainSz[node] - 1, 0, chainId[node], chainPos[node]);
+      int chain = chainId[node];
+      int u = 1;
+      if (chains[chain][chainPos[node] - 1]) {
+        u *= (-1);
+      }
+      chains[chain][chainPos[node] - 1] = !chains[chain][chainPos[node] - 1];
+      update(chain, chainPos[node], u);
     }
     else {
-      cout << query(0, chainSz[node] - 1, 0, chainId[node], chainPos[node]);
+      ll ans = -1;
+      while (node != 1) {
+        int chain = chainId[node];
+        ll sum = query(chain, chainPos[node]);
+        if (sum > 0) {
+          ans = get_idx(chain, chainPos[node]);
+        }
+        node = dad[heads[chain]];
+      }
+      cout << ans << "\n";
     }
   }
 }
