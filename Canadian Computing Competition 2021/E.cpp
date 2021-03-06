@@ -13,13 +13,9 @@ void optimize() {
 	cin.tie(0);
 }
 
-long long a[200000];
+int a[200000];
 
-long long ST[2000000];
-
-vector<pair<long long, pair<int, int>>> q;
-
-vector<vector<int>> upd;
+int ST[1000000];
 
 void build(int l, int r, int node) {
 	if (l == r) {
@@ -47,8 +43,8 @@ int query(int l, int r, int node, int i, int j) {
 		optimize();
 		int n, m;
 		cin >> n >> m;
-		q.resize(m);
-		upd.resize(17, vector<int>(n + 3, 0));
+		vector<pair<int, pair<int, int>>> q(m);
+		vector<vector<int>> upd(17, vector<int>(n + 3, 0));
 		for (int i = 0; i < m; i++) {
 			cin >> q[i].second.first >> q[i].second.second >> q[i].first;
 			upd[q[i].first][q[i].second.first]++;
@@ -71,13 +67,12 @@ int query(int l, int r, int node, int i, int j) {
 		build(1, n, 0);
 		for (int i = 0; i < m; i++) {
 			if (query(1, n, 0, q[i].second.first, q[i].second.second) != q[i].first) {
-				cout << "Impossible";
-				exit(0);
+				cout << "Impossible\n";
+				return 0;
 			}
 		}
 		for (int i = 1; i <= n; i++) {
-			cout << a[i];
-			if (i < n) cout << " ";
+			cout << a[i] << " ";
 		}
-		exit(0);
+		cout << "\n";
 	}
