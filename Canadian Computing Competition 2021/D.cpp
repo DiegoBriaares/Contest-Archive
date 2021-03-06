@@ -15,26 +15,22 @@ void optimize() {
 
 const int INF = 1e9 + 2;
 int pos[1000000];
-vector<vector<int>> edg;
-int S[1000000];
-vector<int> path;
-multiset<int> ans;
-bool vis[1000000];
-multiset<pair<int, int>> q;
 
 	int main () {
 		optimize();
 		int n, w, d;
 		cin >> n >> w >> d;
-		edg.resize(n + 1);
+		vector<vector<int>> edg(n + 1);
 		for (int i = 0; i < w; i++)	{
 			int a, b;
 			cin >> a >> b;
 			edg[b].push_back(a);
 		}
-		path.resize(n + 1, INF);
+		vector<int> path(n + 1, INF);
 		auto dijk = [&] (int o) {
+			multiset<pair<int, int>> q;
 			q.insert({0, o});
+			vector<bool> vis(n + 1);
 			while (!q.empty()) {
 				auto to = *q.begin();
 				q.erase(q.begin());
@@ -47,6 +43,8 @@ multiset<pair<int, int>> q;
 		 	}
 		};
 		dijk(n);
+		vector<int> S(n + 1);
+		multiset<int> ans;
 		for (int i = 1; i <= n; i++) {
 			cin >> S[i];
 			pos[S[i]] = i;
@@ -56,7 +54,7 @@ multiset<pair<int, int>> q;
 			int a, b;
 			cin >> a >> b;
 			if (path[S[a]] != INF) ans.erase(ans.find((pos[S[a]] - 1) + path[S[a]]));	
-			if (path[S[b]] != INF) ans.erase(ans.find((pos[S[b]] - 1) + path[S[b]])); 
+			if (path[S[b]] != INF) ans.erase(ans.find((pos[S[b]] - 1) + path[S[b]])); // && ans.find((pos[S[a]] - 1) + path[S[a]]) != ans.end()
 			pos[S[a]] = b;
 			pos[S[b]] = a;
 			swap(S[a], S[b]);
