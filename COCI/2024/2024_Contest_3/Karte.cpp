@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
-/* This one is a collaboration between Bryan Hernandez and me. 
-** I wrote the solution and he wrote the computer program. */
+/* This one is a collaboration with Bryan Hernandez. */
 
 using namespace std;
 
@@ -17,31 +16,28 @@ int main()
     int n, m, x, y;
     cin >> n >> m >> x >> y;
 
-    vector<vector<int>> grid(n, vector<int>(m));
+    vector<int> grid(n, 0);
     for (int i = 0; i < n; ++i)
     {
         string s;
         cin >> s;
         for (int j = 0; j < m; ++j)
         {
-            grid[i][j] = s[j] - '0';
+            if (s[j] - '0') {
+            	grid[i] |= (1 << j);
+            }
         }
     }
 
 
-    vector<vector<int>> Match(n, vector<int>(1 << m, 0));
-    for (int i = 0; i < n; ++i)
+    vector<int> Match(1 << m, 0);
+    for (int mask = 0; mask < (1 << m); ++mask)
     {
-        for (int mask = 0; mask < (1 << m); ++mask)
-    {
-            for (int j = 0; j < m; ++j)
-            {
-                if (mask & (1 << j))
-                {
-                    Match[i][mask] += grid[i][j];
-                }
-            }
-        }
+    	for (int i = 0; i < m; i++) {
+    	  if ((mask & (1 << i))) {
+         Match[mask]++;
+      	}	
+    	}
     }
 
     int max_strength = 0;
@@ -54,9 +50,9 @@ int main()
 
         for (int i = 0; i < n; ++i)
         {
-            if (Match[i][mask] > x)
+            if (Match[(mask & grid[i])] > x)
             {
-                strength += Match[i][mask] - x;
+                strength += Match[(mask & grid[i])] - x;
             }
         }
 
