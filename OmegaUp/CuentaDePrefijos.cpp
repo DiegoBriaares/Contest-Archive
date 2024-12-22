@@ -2,6 +2,7 @@
 
    * author:    Diego Briaares
    * At:   21.12.2024 22:59:02
+
 **/
 
 #include <bits/stdc++.h>
