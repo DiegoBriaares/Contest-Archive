@@ -23,7 +23,7 @@ public:
             if (k == 0) {
                 return v;
             }
-            // Visitar estados adyacentes.
+            // Visitar estados adyacentes
             int nxt_i, nxt_j;
             for (int it = 0; it < 2; it++) {
                 nxt_i = i + dx[it];
