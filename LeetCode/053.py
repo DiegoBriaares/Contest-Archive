@@ -1,4 +1,4 @@
-# Shorter solution
+# Short solution
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         N = len(nums)
