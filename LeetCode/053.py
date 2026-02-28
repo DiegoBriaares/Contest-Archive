@@ -3,7 +3,7 @@ class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         N = len(nums)
         max_suff = max_sum = nums[0]
-        for i, v in enumerate(nums[1:], start=1):
+        for v in nums[1:]:
             max_suff = max(max_suff + v, v)
 
             max_sum = max(max_sum, max_suff)
