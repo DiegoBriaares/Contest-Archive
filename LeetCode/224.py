@@ -4,10 +4,11 @@ class Solution:
         # Normalize expresion
         expr = ['(']
         for i in range(N):
+            if (s[i] == ' '):
+                continue
             if s[i] == '-' and (i == 0 or s[i - 1] == '('):
                     expr.append('0')
-            if s[i] != ' ':
-                expr.append(s[i])
+            expr.append(s[i])
 
         expr.append(')')
         N = len(expr)
@@ -29,7 +30,7 @@ class Solution:
                 if op == '*':
                     stack.append(stack.pop() * n)
                 if op == '/':
-                    stack.append(stack.pop() // n)
+                    stack.append(int(stack.pop() / n))
 
                 n = 0
 
@@ -44,13 +45,9 @@ class Solution:
                     else:
                         do_op()
                         op = expr[p]
-            if n:
-                do_op()
+            
+            do_op()
             p += 1
             return sum(stack)
         
         return evaluate()
-
-
-        
-        
