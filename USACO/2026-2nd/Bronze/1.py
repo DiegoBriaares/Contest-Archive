@@ -44,7 +44,7 @@
     - If S[i] = O, f <- 1
     i <- i - 1, and go to [Step 7].
 
-  [Step 8]:
+  [Step 8 - Output reconstructed answer]:
   Reverse S', output S', and go to [Step 2].
 
 '''
