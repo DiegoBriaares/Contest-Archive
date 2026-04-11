@@ -5,8 +5,8 @@
   For any query x, let b[0..k - 1] be its bits from least significant to most significant bit. 
   We will separate two cases:
   1) k < N:
-    For this case, we may need to update the costs a[0..N-1], but we will fix it after solving the two cases without considering lower cost than a[i] for obtaining 2^i buckets of milks.
-    for any 0 <= i < k, let dp[i] be minimum cost to obtain at least (2^0)(b[0]) + ... + (2^i)(b[i]) buckets of milk by taking deals from 1 to k.
+    For now, assume a[i] to be the lowest possible cost for obtaining 2^i buckets of milks. This may not be true, but we will fix it after solving the two cases with this assumption.
+    For any 0 <= i < k, let dp[i] be minimum cost to obtain at least (2^0)(b[0]) + ... + (2^i)(b[i]) buckets of milk by taking deals from 1 to k.
     dp[0] = (a[0])(b[0]). For any 1 <= i < k, we have the following cases.
     1) b[i] = 0. Then dp[i] = min(dp[i - 1], a[i]).
     2) b[i] = 1. Then dp[i] = dp[i - 1] + a[i]. 
@@ -20,7 +20,7 @@
   For any N <= i < k, cost[i] = 2 * cost[i - 1].
   The idea of this dynamic programming is that we can obtain 2^i buckets of milk by either taking a deal that offers it, or taking various previous deals to obtain them. Precisely, the minimum cost to obtain 2^i buckets of milk is the minimum between the cost of a deal that offer it and twice the minumum cost to obtain 2^i-1 buckets of milk.
   Then, we can think this as "expanding N" so that k < N, thus the solution for the first case above applies here. We can pre-expand a to have size greater than 31. 
-  For the first case, we also need to update costs of a[0..N-1] by min(a[i], cost[i]).
+  Now we fix the assumption for the first case, we also need to update costs of a[0..N-1] by min(a[i], cost[i]) because cost[i] may be lower than a[i].
   The complexities are O(N) for the precomputation, O(log(x)) for computing dp, O(log(max_x)) for computing cost, and O(1) to compute the actual answer.
   Overall complexity is O(N + Q*log(x) + log(max_x)). 
 
