@@ -81,8 +81,6 @@ m = [[0 for _ in range(N)] for _ in range(N)]
 s = [[0 for _ in range(N)] for _ in range(N)]
 
 mx = 0
-r, c, v = 0, 0, 0
-a = 0
 
 while Q:
   r, c, v = list(map(int, input().split()))
