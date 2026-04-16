@@ -1,5 +1,5 @@
 '''
-  Solution:
+  Resolution:
 
   [Idea 1]:
     Before receiving any random chips, lets exchange as most chips of type B as possible for chips of type A.
