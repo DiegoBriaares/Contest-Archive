@@ -43,15 +43,15 @@
 
               Case 2.2.1) R != 0:
 
-                The worst-case is receiving (R)(c_B) - B + c_B - 1 chips of type B, and receiving D - (R)(c_A) chips of type A.
+                The worst-case is receiving (Q)(c_B) - B + c_B - 1 chips of type B, and receiving D - (Q)(c_A) chips of type A.
 
-                  The answer is (R)(c_B) - B + c_B - 1 + D - (R)(c_A).
+                  The answer is (Q)(c_B) - B + c_B - 1 + D - (Q)(c_A).
 
               Case 2.2.2) R = 0:
 
-                The worst-case is receiving (R - 1)(c_B) - B + c_B - 1 chips of type B, and receiving D - (R - 1)(c_A) chips of type A.
+                The worst-case is receiving (Q - 1)(c_B) - B + c_B - 1 chips of type B, and receiving D - (Q - 1)(c_A) chips of type A.
 
-                  The answer is (R - 1)(c_B) - B + c_B - 1 +  D - (R - 1)(c_A).
+                  The answer is (Q - 1)(c_B) - B + c_B - 1 +  D - (Q - 1)(c_A).
 
   [Solution 1]:
     First, reassign the value of A to A + (floor(B / c_B))(c_A), and reassign the value of B to B % c_B. 
@@ -78,7 +78,7 @@
     Go to Step [2].
 
     Step [2 - Handle test cases]:
-    If T < 0, terminate the program.
+    If T <= 0, terminate the program.
     Otherwise:
       Read A, B, cA, cB, and f.
       A <- A + floor(B / cB) * cA.
