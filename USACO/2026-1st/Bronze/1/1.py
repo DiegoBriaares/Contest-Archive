@@ -119,10 +119,7 @@ while T:
     print (0)
     continue
 
-  if D <= cA:
-    print (cB - B - 1 + D)
-
-  elif cA >= cB:
+  if D <= cA or cA >= cB:
     print (cB - B - 1 + D)
 
   else:
