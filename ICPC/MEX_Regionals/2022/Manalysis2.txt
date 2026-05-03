@@ -1,0 +1,30 @@
+Brute force all permutations in O(n!) factorial time and check in O(n) if a permutation is good. 
+
+This is if D_{ord[j]} - (sum_{i = 1}^j T_{ord[i]}) >= 0 for every 1 <= j <= n.
+
+At this point, we get a correct solution for small test cases, which may help to test our solution.
+
+Can we can generate an order which is valid but may be not the lexicographically smallest?
+
+Yes, generating order[] from right to left, n-th element must satisfy D_{order[n]} >= sum_{i = 1}^{n} T_i.
+
+If there is more than one element satisfaying this condition pick the one with the highest D_i value.
+
+Each element can be picked at most once. You will repeat this n times, but at i-th time you will decrease the total sum by T_order[i + 1] (i.e the element you picked the last time).
+
+If at any time there is no element satisfiying the condition, then answer is "*".
+
+Otherwise it can be proved you end with a valid order[1] order[2] ... order[n] which has the properties:
+
+D_{order[1]} <= D_{order[2]} <= ... <= D_{order[n]}.
+&
+for every 1<= j <= n the condition D_{ord[j]} - (sum_{i = 1}^j T_{ord[i]}) >= 0 is satisified.
+
+Lets swap values from order[] to achieve smaller lexicographical order.
+
+Suppose you start improving from i = 1, 2, ..., n - 1. If for some i < j <= n order[i] < order[j] and order[] is still good after swap(order[i], order[j]) then order[1] order[2] ... order[i] is equal to p_1 p_2 ... p_i (i.e the smallest lexicographic valid order permutation).
+
+if T_order[j] <= min(D_{ord[p]} - (sum_{k = 1}^p T_{ord[k]}:for every i <= p < j) then swap(order[i], order[j]) will mantain a valid order[].
+
+You can check this condition in O(n) for each improvement. Thus we have a O(n^2) complexity.
+

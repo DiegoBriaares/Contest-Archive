@@ -1,0 +1,29 @@
+
+You have n
+
+(T, D)
+
+complete the n tasks before it's deadline or report if impossible.
+
+valid	<=>   T_i + T_i-1 + ... + T_1 <= D_i 	for every 1 <= i <= n;
+
+if i < j then:
+T_i + T_i-1 + ... + T_1 < T_j + t_j-1 + ... + t_i + ... + t_1
+
+Then D_i <= D_j is good
+
+sort for Deadline and tie-break with order of input.
+
+check that order is valid
+
+Improve the order
+
+Try to swap pairs with index from the original input i = 1, 2, 3, ..., n in this order to the left as long as the order is still valid. 	
+
+
+
+
+
+
+
+
