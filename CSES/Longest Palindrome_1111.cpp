@@ -71,7 +71,8 @@ int main () {
     }
   }
   
-  int p, M;
+  int p;
+  int M;
   bool o;
   M = 0;
   o = false;
