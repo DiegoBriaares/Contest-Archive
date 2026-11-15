@@ -65,17 +65,5 @@ using namespace std;
       }
     }
 
-    int mx, mn;
-    mx = 0;
-    for (int i = 0; i <= n; i++) {
-      mx = max(mx, dp[i].pt);
-    }
-    mn = n;
-    for (int i = 0; i <= n; i++) {
-      if (dp[i].pt == mx) {
-        mn = min(mn, dp[i].rp);
-      }
-    }
-
-    cout << mn << "\n";
+    cout << dp[n].rp << "\n";
   }
